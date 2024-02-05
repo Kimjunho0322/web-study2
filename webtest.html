@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>음악 퀴즈</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+<div id="timer" style="height: 20px; background-color: #ffffff;"></div>
+<div id="question-number" class="center-align">1/30</div> <!-- 문제 번호를 표시할 요소 추가 -->
+<div class="container">
+    <div class="time"></div>
+    <h1 class="center-align">음악 퀴즈</h1>
+    <div class="speaker"></div>
+    <div id="message-box"></div>
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span id="close" class="close">&times;</span>
+            <p id="popup-text"></p>
+        </div>
+    </div>    
+    <div class="button-group">
+        <button class="btn waves-effect waves-light" type="submit" name="action" id="hint">힌트</button>
+        <button class="btn waves-effect waves-light" type="submit" name="action" id="play">재생</button>
+    </div>
+    <div id="hintBox"></div>
+    <div class="input-field">
+        <input id="answer" type="text" class="validate" placeholder="정답을 입력하세요">
+    </div>
+    <div>
+        <button class="btn waves-effect waves-light" type="submit" name="action" id="submit">제출</button>  
+        <button class="btn waves-effect waves-light" type="submit" name="action" id="next">다음</button>
+    </div>
+    
+    
+
+    <div id="volumeControl">
+        <input type="range" id="volume" name="volume" min="0" max="100">
+    </div>
+</div>
+
+<!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+<div id="player"></div>
+
+<script src="script.js"></script>
+<script src="youtube.js"></script>
+</body>
+</html>
