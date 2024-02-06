@@ -1,7 +1,7 @@
-const express = require('express');
+const express = require('express'); //express는 개발을 위한 모든 도구가 있음.
 const router = express.Router();
 
-router.get("/", function(req, res){
+router.get("/", function(req, res){   //request(요구) response(응답) 
     res.render('index',{title:"EJS 메인페이지"})
 })
 
