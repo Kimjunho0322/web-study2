@@ -3,14 +3,14 @@ const helmet = require('helmet');  //require('주소')와 같이 npm 으로 설�
 const app = express();
 const ejs = require('ejs');
 
-app.set('view engine', 'ejs');
-app.set('views', './views')
-app.use('/public', express.static(__dirname + '/public'));
+app.set('view engine', 'ejs'); //ejs를 사용 할 거라고 표시 그림파일 보여줄 때 데이터도 같이 보냄
+app.set('views', './views') //html은 어디 있는지 명시
+app.use('/public', express.static(__dirname + '/public')); //css는 어디 있는지 명시
 
 
 app.use(helmet());
-app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.json());   //post 방식을 사용하기 위해 필요한 것 
+app.use(express.urlencoded()); //post 방식을 사용하기 위해 필요한 것 
 
 const mainRouter = require('./router/mainRouter')  //mainRouter에 있는 정보를 갖고 옴
 app.use('/',mainRouter)
