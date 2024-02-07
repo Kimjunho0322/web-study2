@@ -2,6 +2,7 @@ const express = require('express'); //app.js는 모든 서버 정보를 갖고 �
 const helmet = require('helmet');  //require('주소')와 같이 npm 으로 설치한 도구는 바로 도구 이름을 써서 사용할 수 있다.
 const app = express();
 const ejs = require('ejs');
+const db = require('./model/DB');
 
 app.set('view engine', 'ejs'); //ejs를 사용 할 거라고 표시 그림파일 보여줄 때 데이터도 같이 보냄
 app.set('views', './views') //html은 어디 있는지 명시
@@ -15,6 +16,8 @@ app.use(express.urlencoded()); //post 방식을 사용하기 위해 필요한 �
 const mainRouter = require('./router/mainRouter')  //mainRouter에 있는 정보를 갖고 옴
 app.use('/',mainRouter)
 
-app.listen(3000,function(req, res){    
+app.listen(3000,function(req, res){
+    
+    db.sequelize.sync({force:false}) //force를 false로 지정해주면 db가 연결됨 true는 실행 될 때 마다 초기화 함
     console.log("서버가 실행됨");
 })

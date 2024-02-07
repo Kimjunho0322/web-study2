@@ -2,7 +2,7 @@ const express = require('express'); //express는 개발을 위한 모든 도구�
 const router = express.Router();   //express에서 router라는 도구를 꺼냄
 
 router.get("/", function(req, res){   //request(요구) response(응답) 
-    res.render('index',{title:"EJS 메인페이지"}) //render는 그림파일을 보낼 때 
+    res.render('index',{title:"EJS 메인페이지"}) //render는 그림파일을 보낼 때 s
 })
 
 router.get("/about",function(req, res){
