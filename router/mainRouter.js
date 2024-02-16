@@ -3,7 +3,7 @@ const router = express.Router();   //express에서 router라는 도구를 꺼냄
 const db = require('../model/DB');
 
 router.get("/", function(req, res){   //request(요구) response(응답) 
-    res.render('index',{title:"EJS 메인페이지"}) //render는 그림파일을 보낼 때
+    res.render('main',{title:"영화 리뷰 사이트"}) //render는 그림파일을 보낼 때
 })
 
 router.get("/about",function(req, res){
@@ -42,6 +42,23 @@ router.post('/data/delete',function(req,res){
     db.users.destory({where:{user_id:target_id}}).then(function(result){
         res.send({succees:200});
     })
+})
+
+router.post('/review/create', function(req,res){
+    let movie_id = req.body.movie_id; //클라이언트로부터 받은 요청 본문에서 movie_id 값을 추출하여 변수 movie_id에 저장합니다.
+    let review = req.body.review; //클라이언트로부터 받은 요청 본문에서 review 값을 추출하여 변수 review에 저장합니다.
+
+    if(movie_id == '' || movie_id == 0){
+        res.send({succees:400}) //올바르지 않은 값이 왔습니다.
+    }
+    else{
+        db.reviews.create({ //데이터베이스에 접근하여 reviews 테이블에 새로운 레코드를 생성합니다. 생성할 레코드의 movie_id와 review는 위에서 추출한 값들을 사용합니다.
+            movie_id:movie_id,
+            review:review
+        }).then(function(result){
+            res.send({succees:200})
+        })
+    }
 })
 
 

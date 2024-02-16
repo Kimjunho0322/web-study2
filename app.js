@@ -9,7 +9,7 @@ app.set('views', './views') //html은 어디 있는지 명시
 app.use('/public', express.static(__dirname + '/public')); //css는 어디 있는지 명시
 
 
-app.use(helmet());
+//app.use(helmet());
 app.use(express.json());   //post 방식을 사용하기 위해 필요한 것 
 app.use(express.urlencoded()); //post 방식을 사용하기 위해 필요한 것 
 
