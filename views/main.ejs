@@ -103,7 +103,7 @@ integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZD
         target_movie = id;
         $(".modal-body").html('')
         $.ajax({
-            url: `http://universeapi.net/review/list?movie_id=${target_movie}`, // 클라이언트가 요청을 보낼 서버의 URL 주소
+            url: `/review/read?movie_id=${target_movie}`, ///review/read라는 경로로 movie_id라는 키와 그 키에 해당하는 target_movie라는 값을 서버에 보내는 요청을 설정하는 부분
             data: {}, // HTTP 요청과 함께 서버로 보낼 데이터 POST 방식에서만 사용
             type: "GET", // HTTP 요청 방식(GET, POST)
             success:function(json){

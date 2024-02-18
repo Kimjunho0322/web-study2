@@ -61,6 +61,14 @@ router.post('/review/create', function(req,res){
     }
 })
 
+router.get('/review/read', function(req, res){
+    let movie_id = req.query.movie_id; // 요청에서 'movie_id'라는 값을 뽑아내서 'movie_id'라는 변수에 담아두기
+
+    db.reviews.findAll({where:{movie_id:movie_id}}).then(function(result){  // 'movie_id'를 가진 리뷰들을 데이터베이스에서 찾아서
+        res.send({success:200, data:result}) //찾아낸 결과를 보내주기
+    })
+})
+
 
 
 
