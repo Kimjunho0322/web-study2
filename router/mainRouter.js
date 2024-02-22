@@ -2,8 +2,29 @@ const express = require('express'); //express는 개발을 위한 모든 도구�
 const router = express.Router();   //express에서 router라는 도구를 꺼냄
 const db = require('../model/DB');
 
+const cheerio = require('cheerio');  //크롤링 할 때 필요 html을 재가공 하는 것 
+const axios = require('axios'); //크롤링 할 때 필요 html을 갖고 옴
+const iconv = require('iconv-lite'); //크롤링 할 때 필요 한글로 변경
+const url = 'https://finance.naver.com/sise/lastsearch2.naver'
+
+router.get('/crawling', function(req, res){
+
+    axios({url:url,method:'GET',responseType:'arraybuffer'}).then(function(html){
+        const content = iconv.decode(html.data, 'EUC-KR').toString(); //가져온 데이터를 모두 한글로 바꿔서 content에 저장(한글 깨짐 방지)
+        const $ = cheerio.load(content);
+
+        const table = $('.type_5 tr td') //type_5 클래스에 tr 안에 있는 td 데이터를 갖고 옴
+        table.each(function(i, tag){
+            console.log($(tag).text().trim())
+        })
+
+        res.send({succees:200})
+    })
+
+})
+
 router.get("/", function(req, res){   //request(요구) response(응답) 
-    res.render('main',{title:"영화 리뷰 사이트"}) //render는 그림파일을 보낼 때
+    res.render('main',{title:"영화 리뷰 사이트"}); //render는 그림파일을 보낼 때
 })
 
 router.get("/about",function(req, res){
