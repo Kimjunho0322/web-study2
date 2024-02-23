@@ -23,6 +23,10 @@ router.get('/crawling', function(req, res){
 
 })
 
+router.get('/excel', function(req, res){
+    res.render('excel');
+})
+
 router.get("/", function(req, res){   //request(요구) response(응답) 
     res.render('main',{title:"영화 리뷰 사이트"}); //render는 그림파일을 보낼 때
 })
